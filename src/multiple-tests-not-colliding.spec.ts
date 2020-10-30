@@ -1,19 +1,21 @@
 import { DynamoDB } from "aws-sdk";
 import { CreatedTable, createTable, generateRandomName } from "./index";
 
-const dynamoSchema: DynamoDB.CreateTableInput = {
-  TableName: generateRandomName(),
-  AttributeDefinitions: [{ AttributeType: "N", AttributeName: "id" }],
-  KeySchema: [{ AttributeName: "id", KeyType: "HASH" }],
-  BillingMode: "PAY_PER_REQUEST",
-};
+
 
 let tableObject: CreatedTable;
 
-beforeEach(async () => {
-  tableObject = await createTable(dynamoSchema);
-});
+
 describe("Multiple tests do not collide with each other", () => {
+  beforeEach(async () => {
+    const dynamoSchema: DynamoDB.CreateTableInput = {
+      TableName: generateRandomName(),
+      AttributeDefinitions: [{ AttributeType: "N", AttributeName: "id" }],
+      KeySchema: [{ AttributeName: "id", KeyType: "HASH" }],
+      BillingMode: "PAY_PER_REQUEST",
+    };
+    tableObject = await createTable(dynamoSchema);
+  });
   test("Adding an item and getting all should return one item", async () => {
     await tableObject.documentClient.put({
       TableName: tableObject.tableName,

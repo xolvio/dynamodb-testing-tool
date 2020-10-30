@@ -56,7 +56,7 @@ describe("Multiple tests do not collide with each other", () => {
 ```
 
 
-##Options:
+## Options:
 
 ### keepTable
 
@@ -74,7 +74,7 @@ Example:
 
 ```typescript
 import {DynamoDB} from "aws-sdk";
-import {createTable} from "./index";
+import {createTable} from "dynamodb-testing-tool";
 
 const dynamoSchema: DynamoDB.CreateTableInput = {
   TableName: "fixedName",

@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc --declaration",
     "semantic-release": "semantic-release",
-    "test": "jest",
+    "test": "jest --forceExit",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
